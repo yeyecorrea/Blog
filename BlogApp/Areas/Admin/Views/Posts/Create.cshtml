@@ -1,0 +1,112 @@
+﻿@model Blog.Domain.Entities.Post
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!-- summernote -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
+<h1>Crear una publicacion</h1>
+<hr />
+<section class="content">
+    <div class="container-fluid">
+        <div class="row  d-flex justify-content-center align-items-center">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                    </div>
+                    <form asp-area="Admin" asp-controller="Posts" asp-action="Create">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label asp-for="Title" class="control-label"></label>
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Content" class="control-label"></label>
+                                 <textarea asp-for="Content" class="form-control"></textarea>
+                                 <span asp-validation-for="Content" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Slug" class="control-label"></label>
+                                <input asp-for="Slug" class="form-control" />
+                                <span asp-validation-for="Slug" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PostStatusId" class="control-label"></label>
+                                <select asp-for="PostStatusId" class="form-control" asp-items="ViewBag.PostStatusId"></select>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer d-flex justify-content-center align-items-center">
+                            <input type="submit" value="Create" class="btn btn-primary mx-2" />
+                            <a asp-action="Index" class="btn btn-primary mx-2">Volver</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    @{
+        <!-- JS de Summernote -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+        <!-- jQuery UI CSS -->
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+        <!-- jQuery UI JS -->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+        
+            <script>
+                $(document).ready(function () {
+                    $('#Content').summernote({
+                    height: 500,          // Altura del editor
+                    minHeight: 300,       // Altura mínima
+                    maxHeight: 800,       // Altura máxima
+                    focus: true,          // Enfocar el editor al inicializar
+                    lang: 'es-ES',        // Cambiar el idioma del editor (opcional)
+                    toolbar: [
+                        // Personalización de la barra de herramientas
+                        ['style', ['style']],                     // Estilos como encabezado, normal, etc.
+                        ['font', ['bold', 'italic', 'underline', 'clear']], // Negrita, cursiva, subrayado, eliminar formato
+                        ['fontname', ['fontname']],               // Fuente del texto
+                        ['fontsize', ['fontsize']],               // Tamaño del texto
+                        ['color', ['color']],                     // Colores de fondo y texto
+                        ['para', ['ul', 'ol', 'paragraph']],      // Listas desordenadas, ordenadas y alineación
+                        ['table', ['table']],                     // Insertar tablas
+                        ['insert', ['link', 'picture', 'video']], // Insertar enlaces, imágenes y videos
+                        ['view', ['fullscreen', 'codeview', 'help']] // Modo pantalla completa, código fuente y ayuda
+                    ],
+                    popover: {
+                        // Configuración adicional para los popovers de imágenes y tablas
+                        image: [
+                            ['custom', ['imageAttributes']],
+                            ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
+                            ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                            ['remove', ['removeMedia']]
+                        ],
+                        table: [
+                            ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
+                            ['delete', ['deleteRow', 'deleteCol', 'deleteTable']]
+                        ]
+                    },
+                    fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Merriweather'],
+                    fontSizes: ['8', '9', '10', '11', '12', '14', '18', '24', '36', '48'],
+                    codeviewFilter: true,       // Filtra el HTML para evitar código dañino
+                    codeviewIframeFilter: true, // Permite el filtrado dentro de iframes
+                    codemirror: {               // Configuración del modo código fuente (CodeMirror)
+                        theme: 'monokai',         // Tema de CodeMirror (opcional)
+                        lineNumbers: true,        // Mostrar números de línea en el código fuente
+                    }
+                    
+                    
+                    });
+                });
+            </script>
+    }
+}

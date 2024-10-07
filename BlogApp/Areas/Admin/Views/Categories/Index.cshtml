@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Blog.Domain.Entities.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mb-4">Lista de las categorias</h1>
+
+<p>
+    <a asp-area="Admin" asp-controller="Categories" asp-action="Create" class="btn btn-primary"> <i class="ion-plus-circled"></i> Crear</a>
+</p>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.CategoryName)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CategoryName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            <a asp-area="Admin" asp-controller="Categories"  asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary"> <i class="ion-edit"></i> Editar</a>
+                                            <a asp-area="Admin" asp-controller="Categories" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary"> <i class="ion-eye"></i> Detalles</a>
+                                            <a asp-area="Admin" asp-controller="Categories"  asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"> <i class="ion-trash-a"></i> Eliminar</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Blog.Domain.Entities.Post>
+
+@foreach (var item in Model)
+{
+    <div class="post-preview">
+        <a asp-controller="Posts" asp-action="Details" asp-route-id="@item.Id">
+            <h2 class="post-title">@Html.DisplayFor(modelItem => item.Title)</h2>
+        </a>
+        <p class="post-meta">
+            Posted by
+            <a asp-controller="Posts" asp-action="Details" asp-route-id="@item.Id" >@Html.DisplayFor(modelItem => item.User.Email)</a>
+            on @Html.DisplayFor(modelItem => item.DateCreated)
+        </p>
+    </div>
+}

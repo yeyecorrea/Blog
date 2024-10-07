@@ -1,0 +1,38 @@
+﻿@model Blog.Domain.Entities.Category
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles de categoria</h1>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="bg-light p-4 rounded shadow-sm">
+                    <h4 class="text-primary mb-4">Detalles de la Categoría</h4>
+                    <dl class="row mb-4">
+                        <dt class="col-sm-4 text-right font-weight-bold text-muted">
+                            @Html.DisplayNameFor(model => model.CategoryName)
+                        </dt>
+                        <dd class="col-sm-8">
+                            <span class="text-dark">@Html.DisplayFor(model => model.CategoryName)</span>
+                        </dd>
+                        <dt class="col-sm-4 text-right font-weight-bold text-muted">
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+                        <dd class="col-sm-8">
+                            <span class="text-dark">@Html.DisplayFor(model => model.Description)</span>
+                        </dd>
+                    </dl>
+                    <div class="d-flex justify-content-center">
+                        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Editar</a>
+                        <a asp-action="Index" class="btn btn-secondary">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

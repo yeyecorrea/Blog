@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Blog.Domain.Entities.Comment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de comentarios</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Title)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DateCreated)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.User)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DateCreated)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.User.Email)
+                                        </td>
+                                        <td>
+                                            <a asp-area="Admin" asp-controller="Comments" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary"> <i class="ion-edit"></i> Editar</a>
+                                            <a asp-area="Admin" asp-controller="Comments" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary"> <i class="ion-eye"></i> Detalles</a>
+                                            <a asp-area="Admin" asp-controller="Comments" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"> <i class="ion-trash-a"></i> Eliminar</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
